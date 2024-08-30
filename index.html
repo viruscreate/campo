@@ -1,1 +1,129 @@
-<input type="email" maxlength="128" id="ap_email" name="email" class="a-input-text a-span12 auth-autofocus auth-required-field auth-require-claim-validation" aria-describedby="emailErrorAnnounce" aria-required="true" aria-invalid="true">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessori Fortnite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #2c2f33;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #7289da;
+            border-radius: 5px;
+            background-color: #23272a;
+            color: #ffffff;
+        }
+
+        .error {
+            background-color: #ff4c4c;
+            border-color: #ff0000;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7289da;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #5b6eae;
+        }
+
+        #successMessage {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #43b581;
+            border-radius: 5px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #errorMessage {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ff4c4c;
+            border-radius: 5px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Accessori Fortnite</h2>
+        <input type="text" maxlength="128" id="skin_name" name="skin_name" placeholder="Nome della skin o accessorio">
+        <input type="text" maxlength="128" id="username" name="username" placeholder="Nome utente">
+        <button onclick="inviaEmail()">Invio nome utente</button>
+        <div id="successMessage">Il regalo è stato inviato con successo!</div>
+        <div id="errorMessage"></div>
+    </div>
+
+    <script>
+        function inviaEmail() {
+            var skinName = document.getElementById("skin_name");
+            var username = document.getElementById("username");
+            var successMessage = document.getElementById("successMessage");
+            var errorMessage = document.getElementById("errorMessage");
+
+            // Reset error styles
+            skinName.classList.remove("error");
+            username.classList.remove("error");
+            successMessage.style.display = "none";
+            errorMessage.style.display = "none";
+
+            // Validation logic
+            if (!skinName.value && !username.value) {
+                errorMessage.textContent = "Compila la prima e la seconda casella!";
+                errorMessage.style.display = "block";
+                skinName.classList.add("error");
+                username.classList.add("error");
+            } else if (!skinName.value) {
+                errorMessage.textContent = "Compila la prima casella!";
+                errorMessage.style.display = "block";
+                skinName.classList.add("error");
+            } else if (!username.value) {
+                errorMessage.textContent = "Compila la seconda casella!";
+                errorMessage.style.display = "block";
+                username.classList.add("error");
+            } else {
+                successMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
